@@ -27,7 +27,7 @@
 #include <QSettings>
 #include <QDebug>
 
-#include <KWindowSystem>
+#include <KX11Extras>
 
 static Utils *INSTANCE = nullptr;
 

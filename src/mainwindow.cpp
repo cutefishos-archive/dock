@@ -31,7 +31,7 @@
 #include <QMetaEnum>
 
 #include <NETWM>
-#include <KWindowSystem>
+#include <KX11Extras>
 #include <KWindowEffects>
 
 MainWindow::MainWindow(QQuickView *parent)
@@ -53,8 +53,8 @@ MainWindow::MainWindow(QQuickView *parent)
     setColor(Qt::transparent);
 
     setFlags(Qt::FramelessWindowHint | Qt::WindowDoesNotAcceptFocus);
-    // KWindowSystem::setOnDesktop(winId(), NET::OnAllDesktops);
-    KWindowSystem::setType(winId(), NET::Dock);
+    // KX11Extras::setOnDesktop(winId(), NET::OnAllDesktops);
+    KX11Extras::setType(winId(), NET::Dock);
 
     engine()->rootContext()->setContextProperty("appModel", m_appModel);
     engine()->rootContext()->setContextProperty("process", new ProcessProvider);
@@ -286,7 +286,7 @@ void MainWindow::initSlideWindow()
     else if (m_settings->direction() == DockSettings::Bottom)
         location = KWindowEffects::BottomEdge;
 
-    KWindowEffects::slideWindow(winId(), location);
+    KWindowEffects::slideWindow(this, location);
 }
 
 void MainWindow::updateViewStruts()
